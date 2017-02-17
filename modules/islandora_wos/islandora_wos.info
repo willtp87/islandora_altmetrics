@@ -1,0 +1,6 @@
+name = Islandora Web of Science Badges
+version = 7.x-dev
+core = 7.x
+description = Islandora Web of Science integration.
+dependencies[] = islandora_badges
+package = Islandora Tools
