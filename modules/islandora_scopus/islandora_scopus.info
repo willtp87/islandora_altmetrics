@@ -1,0 +1,6 @@
+name = Islandora Scopus Badges
+version = 7.x-dev
+core = 7.x
+description = Islandora Scopus integration.
+dependencies[] = islandora_badges
+package = Islandora Tools
