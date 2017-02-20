@@ -51,18 +51,12 @@ Having problems or solved a problem? Check out the Islandora google groups for a
 * [Islandora Group](https://groups.google.com/forum/?hl=en&fromgroups#!forum/islandora)
 * [Islandora Dev Group](https://groups.google.com/forum/?hl=en&fromgroups#!forum/islandora-dev)
 
-### Future development:
-* Make the Altmetric API Key a configurable variable 
-* Allow other kinds of identifiers (besides DOI) to be used
-* Remove the restriction that limits badges to Citation objects
-* Add more badges
-
 ## Maintainers/Sponsors
 
 Current maintainers:
 
 * [Brandon Weigel](https://github.com/bondjimbond)
-
+* [William Panting](https://github.com/willtp87)
 ## Development
 
 If you would like to contribute to this module, please check out [CONTRIBUTING.md](CONTRIBUTING.md). In addition, we have helpful [Documentation for Developers](https://github.com/Islandora/islandora/wiki#wiki-documentation-for-developers) info, as well as our [Developers](http://islandora.ca/developers) section on the [Islandora.ca](http://islandora.ca) site.
