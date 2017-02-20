@@ -70,5 +70,3 @@ function islandora_altmetrics_block_view($delta) {
   }
   return $to_render;
 }
-
-

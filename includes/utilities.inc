@@ -6,9 +6,10 @@
 
 /**
  * Find a DOI in the MODS record and return it.
- * @param \AbstractObject $object
+ *
+ *   @param \AbstractObject $object
  *    The Fedora object.
- * @return string
+ *   @return string
  *    The DOI or FALSE
  */
 function islandora_badges_get_doi(AbstractObject $object) {
@@ -39,7 +40,7 @@ function islandora_badges_get_doi(AbstractObject $object) {
  * @param \AbstractObject $object
  *   The object we are viewing.
  *
- * @return boolean
+ * @return bool
  *   Whether $object has a content model to show badges for.
  */
 function islandora_badges_show_for_cmodel(AbstractObject $object) {

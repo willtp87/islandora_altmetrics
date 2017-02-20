@@ -5,7 +5,7 @@
  */
 
 /**
- * Find the SCOPUS ID using an other id like DOI, PMID, etc
+ * Find the SCOPUS ID using an other id like DOI, PMID, etc.
  *
  * @param string $type
  *   The type of id to use (doi).

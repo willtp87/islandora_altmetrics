@@ -90,5 +90,5 @@ function islandora_badges_admin_form_submit(array $form, array &$form_state) {
   $enabled = array_keys(array_filter($form_state['values']['badges_table']));
   variable_set('islandora_badges_selected_cmodels', $enabled);
   variable_set('islandora_badges_doi_xpath', $form_state['values']['islandora_badges_doi_xpath']);
-  drupal_set_message("Configuration saved.");
+  drupal_set_message(t("Configuration saved."));
 }

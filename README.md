@@ -1,4 +1,4 @@
-# Islandora Badges
+# Islandora Badges[![Build Status](https://travis-ci.org/Islandora/islandora_altmetrics.png?branch=7.x)](https://travis-ci.org/Islandora/islandora_altmetrics)
 
 ## Introduction
 
