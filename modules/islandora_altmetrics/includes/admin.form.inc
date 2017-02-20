@@ -101,7 +101,7 @@ function islandora_altmetrics_preview_badge($form, $form_state) {
   $commands[] = ajax_command_html('#badge-preview' , render($form['islandora_altmetrics_wrapper']));
 
   // This is what will call our JS command.
-  $commands[] = array (
+  $commands[] = array(
     // The command in my JS file
     'command' => 'islandoraAltmetricsRenderBadge',
   );
