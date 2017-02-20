@@ -3,7 +3,7 @@
  * @file
  * Web of Science badge admin options
  */
-
+// Generates admin form.
 function islandora_wos_admin_form($form, $form_settings) {
   $form['islandora_wos_username'] = array(
     '#type' => 'textfield',
