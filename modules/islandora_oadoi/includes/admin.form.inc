@@ -3,7 +3,10 @@
  * @file
  * oaDOI badge admin options
  */
-// Admin form: configure PDF link text.
+
+/**
+ * Admin form: configure PDF link text.
+ */
 function islandora_oadoi_admin_form($form, $form_settings) {
   $form['islandora_oai_linktext'] = array(
     '#type' => 'textfield',

@@ -9,7 +9,7 @@
  *
  * @param string $type
  *   The type of id to use (doi).
- * @param $code
+ * @param string $code
  *   The value of the code to search for.
  *
  * @return mixed

@@ -9,6 +9,7 @@
  */
 function islandora_oadoi_uninstall() {
   $vars = array(
+    islandora_oai_linktext,
   );
   array_walk($vars, 'variable_del');
 }

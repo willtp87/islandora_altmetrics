@@ -7,10 +7,10 @@
 /**
  * Find a DOI in the MODS record and return it.
  *
- *   @param \AbstractObject $object
- *    The Fedora object.
- *   @return string
- *    The DOI or FALSE
+ * @param \AbstractObject $object
+ *   The Fedora object.
+ * @return string
+ *   The DOI or FALSE
  */
 function islandora_badges_get_doi(AbstractObject $object) {
   // Get DOI.

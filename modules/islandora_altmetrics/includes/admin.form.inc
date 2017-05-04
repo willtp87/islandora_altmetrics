@@ -4,7 +4,9 @@
  * Admin forms
  */
 
-// Generates admin form
+/**
+ * Generates admin form.
+ */
 function islandora_altmetrics_admin_form($form, &$form_state) {
   drupal_add_js('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js', 'external');
   drupal_add_js(drupal_get_path('module', 'islandora_altmetrics') . '/js/altmetric.js');
@@ -96,16 +98,15 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
  */
 function islandora_altmetrics_preview_badge($form, $form_state) {
   $commands = array();
-  // This is the replacement for "return $form['islandora_altmetrics_wrapper'];".
-  // This also just specifies the same id in $form['islandora_altmetrics_wrapper']['#prefix'].
+  // Replaces "return $form['islandora_altmetrics_wrapper'];".
+  // Specifies the same id in $form['islandora_altmetrics_wrapper']['#prefix'].
   $commands[] = ajax_command_html('#badge-preview' , render($form['islandora_altmetrics_wrapper']));
 
   // This is what will call our JS command.
   $commands[] = array(
-    // The command in my JS file
+    // The command in my JS file.
     'command' => 'islandoraAltmetricsRenderBadge',
   );
 
   return array('#type' => 'ajax', '#commands' => $commands);
 }
-
