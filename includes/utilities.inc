@@ -9,6 +9,7 @@
  *
  * @param \AbstractObject $object
  *   The Fedora object.
+ *
  * @return string
  *   The DOI or FALSE
  */
