@@ -1,3 +1,5 @@
+# Islandora Altmetrics
+
 ## Introduction
 
 Islandora Altmetrics provides a Altmetrics badge on objects, indicating social media interactions. Applies to any object with a DOI, within selected content models. For use with Islandora Badges.
