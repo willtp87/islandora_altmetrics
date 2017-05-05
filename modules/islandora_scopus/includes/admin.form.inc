@@ -3,6 +3,10 @@
  * @file
  * Admin forms
  */
+
+/**
+ * Admin form for API key.
+ */
 function islandora_scopus_admin_form($form, &$form_state) {
   $form['islandora_scopus_api_key'] = array(
     '#type' => 'textfield',

@@ -88,9 +88,9 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
 /**
  * Admin form Ajax callback.
  *
- * @param $form
+ * @param array $form
  *   The Drupal form object.
- * @param $form_state
+ * @param array $form_state
  *   The Drupal form state.
  *
  * @return array
@@ -100,7 +100,7 @@ function islandora_altmetrics_preview_badge($form, $form_state) {
   $commands = array();
   // Replaces "return $form['islandora_altmetrics_wrapper'];".
   // Specifies the same id in $form['islandora_altmetrics_wrapper']['#prefix'].
-  $commands[] = ajax_command_html('#badge-preview' , render($form['islandora_altmetrics_wrapper']));
+  $commands[] = ajax_command_html('#badge-preview', render($form['islandora_altmetrics_wrapper']));
 
   // This is what will call our JS command.
   $commands[] = array(
