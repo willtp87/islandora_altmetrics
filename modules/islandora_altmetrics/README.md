@@ -1,5 +1,3 @@
-# Islandora Altmetrics [![Build Status](https://travis-ci.org/Islandora/islandora_altmetrics.png?branch=7.x)](https://travis-ci.org/Islandora/islandora_altmetrics)
-
 ## Introduction
 
 Islandora Altmetrics provides a Altmetrics badge on objects, indicating social media interactions. Applies to any object with a DOI, within selected content models. For use with Islandora Badges.
