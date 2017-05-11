@@ -1,4 +1,4 @@
-name = Islandora Altmetrics Badges
+name = Islandora Altmetrics
 version = 7.x-dev
 core = 7.x
 description = Islandora Altmetrics integration.
