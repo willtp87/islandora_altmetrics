@@ -23,7 +23,9 @@ function islandora_wos_menu() {
 
 /**
  * Implements hook_block_info().
+ *
  * @return array
+ *   The block configuration.
  */
 function islandora_wos_block_info() {
   return array(
@@ -112,7 +114,7 @@ function islandora_wos_block_view($delta = '') {
                 break;
 
               case 'citing_articles_url':
-                // URL: child node of <val name="citingArticlesURL"> under CDATA.
+                // URL is child of <val name="citingArticlesURL"> under CDATA.
                 // We need to pull this out.
                 $citing_articles_url = $val[0];
 

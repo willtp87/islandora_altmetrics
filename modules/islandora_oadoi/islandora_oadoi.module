@@ -24,6 +24,7 @@ function islandora_oadoi_menu() {
 /**
  * Implements hook_block_info().
  * @return array
+ *  The block configuration.
  */
 function islandora_oadoi_block_info() {
   return array(
