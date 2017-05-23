@@ -27,12 +27,13 @@ function islandora_wos_menu() {
  */
 function islandora_wos_block_info() {
   return array(
-  'islandora_wos_badge' => array(
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'islandora/object/*',
-    'cache' => DRUPAL_CACHE_PER_PAGE,
-    'info' => t('Islandora Web of Science Badge'),
-  ));
+    'islandora_wos_badge' => array(
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => 'islandora/object/*',
+      'cache' => DRUPAL_CACHE_PER_PAGE,
+      'info' => t('Islandora Web of Science Badge'),
+    )
+  );
 }
 
 /**
@@ -52,12 +53,11 @@ function islandora_wos_block_view($delta = '') {
         $doi = islandora_badges_get_doi($object);
         if ($doi) {
           // Embed Web of Science.
-          // Set API endpoint URL
-          // @TODO: Add to admin form
+          // Set API endpoint URL.
+          // @TODO: Add to admin form.
           $url = "https://ws.isiknowledge.com/cps/xrpc";
 
-
-          //Store your XML Request in a string - not ideal but I don't know how to send an XML file by POST (ha ha)
+          // Store XML Request in string, as I can't send an XML file by POST (ha ha)
           $input_xml = '<?xml version="1.0" encoding="UTF-8" ?>
       <request xmlns="http://www.isinet.com/xrpc42" src="app.id=API Demo">
         <fn name="LinksAMR.retrieve">
@@ -90,45 +90,46 @@ function islandora_wos_block_view($delta = '') {
             'headers' => array('Content-Type' => 'text/xml'),
             'data' => $input_xml,
             'method' => 'POST',
-            'timeout' => 10
-          ));
+            'timeout' => 10,
+            )
+          );
 
-          // Convert the response to an array and remove the CDATA tags
+          // Convert the response to an array and remove the CDATA tags.
 
           $wos_result = simplexml_load_string($result->data, 'SimpleXMLElement', LIBXML_NOCDATA);
 
           // Default - zero citations -- should this really be present?
-          $timesCited = 0;
+          $times_cited = 0;
 
-          // Default - citingArticlesURL - no citing articles = empty array
-          $citingArticlesURL = array();
+          // Default - citing_articles_url - no citing articles = empty array.
+          $citing_articles_url = array();
 
-          // Get the values into the variables
-
+          // Get the values into the variables.
           foreach ($wos_result->fn->map->map->map->val as $val) {
-            switch ((string) $val['name']) { // Get attributes as element indices
-              case 'timesCited':
-                $timesCited = $val[0];
+            switch ((string) $val['name']) {
+              case 'times_cited':
+                $times_cited = $val[0];
                 break;
-              case 'citingArticlesURL':
+
+              case 'citing_articles_url':
                 // URL is child node of <val name="citingArticlesURL"> in CDATA section.
                 // We need to pull this out.
-                // Possible that there could be multiple citingArticlesURL values and thus needs an array... Is this true?
-
-                $citingArticlesURL = $val[0];
+                // If multiple citing_articles_url, will need an array. Hasn't come up yet.
+                $citing_articles_url = $val[0];
 
                 break;
+
             }
           }
           // If there is no error return data
-          if ($timesCited > 0) {
+          if ($times_cited > 0) {
             if (empty($result->error)) {
-              $badgeType = variable_get('islandora_wos_badgetype');
-              if ($badgeType == 'text') {
-                $to_render['content'] = '<div class="wos_badge"><a href="' . $citingArticlesURL . '" target="_blank">Web of Science citations: ' . $timesCited . '</a></div>';
+              $badge_type = variable_get('islandora_wos_badgetype');
+              if ($badge_type == 'text') {
+                $to_render['content'] = '<div class="wos_badge"><a href="' . $citing_articles_url . '" target="_blank">Web of Science citations: ' . $times_cited . '</a></div>';
               }
               else {
-                $to_render['content'] = '<a href="' . $citingArticlesURL . '" target="_blank"><img src=https://img.shields.io/badge/Web%20of%20Science%20citations-' . $timesCited . '-orange.svg?style=flat"></img></a>';
+                $to_render['content'] = '<a href="' . $citing_articles_url . '" target="_blank"><img src=https://img.shields.io/badge/Web%20of%20Science%20citations-' . $times_cited . '-orange.svg?style=flat"></img></a>';
               }
             }
           }
