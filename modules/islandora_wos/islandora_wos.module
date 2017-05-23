@@ -32,7 +32,7 @@ function islandora_wos_block_info() {
       'pages' => 'islandora/object/*',
       'cache' => DRUPAL_CACHE_PER_PAGE,
       'info' => t('Islandora Web of Science Badge'),
-    )
+    ),
   );
 }
 
@@ -57,7 +57,7 @@ function islandora_wos_block_view($delta = '') {
           // @TODO: Add to admin form.
           $url = "https://ws.isiknowledge.com/cps/xrpc";
 
-          // Store XML Request in string, as I can't send an XML file by POST (ha ha)
+          // Store XML Request in string, as I can't send an XML file by POST.
           $input_xml = '<?xml version="1.0" encoding="UTF-8" ?>
       <request xmlns="http://www.isinet.com/xrpc42" src="app.id=API Demo">
         <fn name="LinksAMR.retrieve">
@@ -112,16 +112,15 @@ function islandora_wos_block_view($delta = '') {
                 break;
 
               case 'citing_articles_url':
-                // URL is child node of <val name="citingArticlesURL"> in CDATA section.
+                // URL: child node of <val name="citingArticlesURL"> under CDATA.
                 // We need to pull this out.
-                // If multiple citing_articles_url, will need an array. Hasn't come up yet.
                 $citing_articles_url = $val[0];
 
                 break;
 
             }
           }
-          // If there is no error return data
+          // If there is no error, return data.
           if ($times_cited > 0) {
             if (empty($result->error)) {
               $badge_type = variable_get('islandora_wos_badgetype');
