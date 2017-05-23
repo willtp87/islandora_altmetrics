@@ -50,7 +50,7 @@ function islandora_altmetrics_block_view($delta) {
         if ($doi) {
           // Only generate block if a result exists - check API callback.
           $file_headers = @get_headers("http://api.altmetric.com/v1/doi/" . $doi . "?callback=my_callback");
-          if($file_headers['0'] != 'HTTP/1.1 404 Not Found') {
+          if ($file_headers['0'] != 'HTTP/1.1 404 Not Found') {
             // Embed Altmetrics.
             $to_render['content']['altmetrics'] = array(
               '#type' => 'container',
