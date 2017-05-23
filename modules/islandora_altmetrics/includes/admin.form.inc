@@ -7,11 +7,12 @@
 /**
  * Generates admin form.
  */
-function islandora_altmetrics_admin_form($form, &$form_state) {
-  drupal_add_js('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js', 'external');
-  drupal_add_js(drupal_get_path('module', 'islandora_altmetrics') . '/js/altmetric.js');
+function islandora_altmetrics_admin_form($form, &$form_state) 
+{
+    drupal_add_js('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js', 'external');
+    drupal_add_js(drupal_get_path('module', 'islandora_altmetrics') . '/js/altmetric.js');
 
-  $badge_styles = array(
+    $badge_styles = array(
     "4" => "small badge",
     "2" => "medium badge",
     "1" => "large badge",
@@ -21,9 +22,9 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
     "bar" => "small bar",
     "medium-bar" => "medium bar",
     "large-bar" => "large bar",
-  );
+    );
 
-  $form['islandora_altmetrics_badge'] = array(
+    $form['islandora_altmetrics_badge'] = array(
     '#type' => 'select',
     '#title' => t('Altmetrics Badge'),
     '#options' => $badge_styles,
@@ -35,9 +36,9 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
       'method' => 'replace',
       'event' => 'change',
     ),
-  );
+    );
 
-  $form['islandora_altmetrics_popover'] = array(
+    $form['islandora_altmetrics_popover'] = array(
     '#type' => 'select',
     '#title' => t('Altmetrics Popover'),
     '#description' => t('Popover direction for extra information.'),
@@ -55,24 +56,24 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
       'method' => 'replace',
       'event' => 'change',
     ),
-  );
+    );
 
-  $form['islandora_altmetrics_wrapper'] = array(
+    $form['islandora_altmetrics_wrapper'] = array(
     '#type' => 'item',
     '#title' => t('Example badge'),
     '#prefix' => '<div id="badge-preview">',
     '#suffix' => '</div>',
-  );
+    );
 
-  $badge = !empty($form_state['values']['islandora_altmetrics_badge']) ?
+    $badge = !empty($form_state['values']['islandora_altmetrics_badge']) ?
     $form_state['values']['islandora_altmetrics_badge'] :
     variable_get('islandora_altmetrics_badge', '2');
-  $popover = !empty($form_state['values']['islandora_altmetrics_popover']) ?
+    $popover = !empty($form_state['values']['islandora_altmetrics_popover']) ?
     $form_state['values']['islandora_altmetrics_popover'] :
     variable_get('islandora_altmetrics_popover', 'right');
-  $sample_doi = "10.1038/nature.2014.14583";
+    $sample_doi = "10.1038/nature.2014.14583";
 
-  $form['islandora_altmetrics_wrapper']['islandora_altmetrics_badge_preview'] = array(
+    $form['islandora_altmetrics_wrapper']['islandora_altmetrics_badge_preview'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'class' => array('altmetric-embed'),
@@ -81,8 +82,8 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
       'data-doi' => $sample_doi,
       'data-hide-no-mentions' => "true",
     ),
-  );
-  return system_settings_form($form);
+    );
+    return system_settings_form($form);
 }
 
 /**
@@ -96,17 +97,18 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
  * @return array
  *   The render array.
  */
-function islandora_altmetrics_preview_badge($form, $form_state) {
-  $commands = array();
-  // Replaces "return $form['islandora_altmetrics_wrapper'];".
-  // Specifies the same id in $form['islandora_altmetrics_wrapper']['#prefix'].
-  $commands[] = ajax_command_html('#badge-preview', render($form['islandora_altmetrics_wrapper']));
+function islandora_altmetrics_preview_badge($form, $form_state) 
+{
+    $commands = array();
+    // Replaces "return $form['islandora_altmetrics_wrapper'];".
+    // Specifies the same id in $form['islandora_altmetrics_wrapper']['#prefix'].
+    $commands[] = ajax_command_html('#badge-preview', render($form['islandora_altmetrics_wrapper']));
 
-  // This is what will call our JS command.
-  $commands[] = array(
+    // This is what will call our JS command.
+    $commands[] = array(
     // The command in my JS file.
     'command' => 'islandoraAltmetricsRenderBadge',
-  );
+    );
 
-  return array('#type' => 'ajax', '#commands' => $commands);
+    return array('#type' => 'ajax', '#commands' => $commands);
 }
