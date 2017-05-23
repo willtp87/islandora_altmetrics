@@ -32,7 +32,7 @@ function islandora_oadoi_block_info() {
       'pages' => 'islandora/object/*',
       'cache' => DRUPAL_CACHE_PER_PAGE,
       'info' => t('Islandora oaDOI Link'),
-    )
+    ),
   );
 }
 
@@ -57,11 +57,11 @@ function islandora_oadoi_block_view($delta = '') {
             $url = "https://api.oadoi.org/";
             $request_url = $url . $doi;
 
-           // Make the request and get results!
+            // Make the request and get results!
             $result_json = file_get_contents($request_url);
             $result_array = json_decode($result_json, TRUE);
             $result_free_url = $result_array['results'][0]['free_fulltext_url'];
-          } 
+          }
         }
       }
     }
