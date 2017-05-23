@@ -1,5 +1,4 @@
 name = Islandora Badges
-version = 7.x-dev
 core = 7.x
 description = Islandora Badges integration.
 dependencies[] = islandora
