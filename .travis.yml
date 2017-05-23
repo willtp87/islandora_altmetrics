@@ -30,5 +30,10 @@ before_install:
 script:
   - $ISLANDORA_DIR/tests/scripts/line_endings.sh sites/all/modules/islandora_altmetrics
   - drush coder-review --reviews=production,security,style,i18n,potx,sniffer sites/all/modules/islandora_altmetrics
+  - drush coder-review --reviews=production,security,style,i18n,potx,sniffer --no-empty islandora_badges
+  - drush coder-review --reviews=production,security,style,i18n,potx,sniffer --no-empty islandora_wos
+  - drush coder-review --reviews=production,security,style,i18n,potx,sniffer --no-empty islandora_scopus
+  - drush coder-review --reviews=production,security,style,i18n,potx,sniffer --no-empty islandora_oadoi
+  - drush coder-review --reviews=production,security,style,i18n,potx,sniffer --no-empty islandora_altmetrics
   - phpcpd --names *.module,*.inc,*.test,*.php sites/all/modules/islandora_altmetrics
   - drush test-run --uri=http://localhost:8081 "Islandora Altmetrics"
