@@ -68,7 +68,7 @@ function islandora_oadoi_block_view($delta = '') {
 
   if (isset($result_free_url)) {
     global $base_url;
-    // If the oaDOI URL points to the current website (a common error with their data), do not display block.
+    // If oaDOI points to the current website, do not display block.
     if (strpos($result_free_url, $base_url) !== 0) {
       $link_text = variable_get('islandora_oai_linktext', 'Link to PDF');
       $to_render['content'] = '<div class="oadoi"><a href="' . $result_free_url . '" target="_blank">' . $link_text . '</a></div>';
