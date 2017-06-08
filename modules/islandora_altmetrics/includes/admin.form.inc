@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Admin forms
+ * Admin forms.
  */
 
 /**
@@ -96,7 +97,7 @@ function islandora_altmetrics_admin_form($form, &$form_state) {
  * @return array
  *   The render array.
  */
-function islandora_altmetrics_preview_badge($form, $form_state) {
+function islandora_altmetrics_preview_badge(array $form, array $form_state) {
   $commands = array();
   // Replaces "return $form['islandora_altmetrics_wrapper'];".
   // Specifies the same id in $form['islandora_altmetrics_wrapper']['#prefix'].

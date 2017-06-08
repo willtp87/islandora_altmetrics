@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Admin form functions for Islandora Altmetrics.
