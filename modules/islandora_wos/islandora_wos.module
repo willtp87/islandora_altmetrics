@@ -104,7 +104,8 @@ EOB;
             $citing_articles_url = array();
 
             // XPaths based on
-            // http://ipscience-help.thomsonreuters.com/LAMRService/WebServiceOperationsGroup/responseAPIWoS.html
+            // http://ipscience-help.thomsonreuters.com/LAMRService/
+            // WebServiceOperationsGroup/responseAPIWoS.html
             $citations = $xpath->query("/fn/map/map[@name=\"cite_1\"]/map[@name=\"WOS\"]");
             if ($citations->length > 0) {
               $context = $citations->item(0);
