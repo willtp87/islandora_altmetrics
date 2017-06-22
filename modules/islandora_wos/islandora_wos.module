@@ -96,27 +96,28 @@ EOB;
           );
           if (empty($result->error)) {
             // Convert the response to an array and remove the CDATA tags.
-            $wos_result = simplexml_load_string($result->data, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $wos_doc = new DOMDocument();
+            $wos_doc->loadXML($result->data);
+            $xpath = new DOMXPath($wos_doc);
 
             // Default - citing_articles_url - no citing articles = empty array.
             $citing_articles_url = array();
 
-            // Get the values into the variables.
-            foreach ($wos_result->fn->map->map->map->val as $val) {
-              switch ((string) $val['name']) {
-                case 'times_cited':
-                  $times_cited = $val[0];
-                  break;
-
-                case 'citing_articles_url':
-                  // URL is child of <val name="citingArticlesURL"> under CDATA.
-                  // We need to pull this out.
-                  $citing_articles_url = $val[0];
-
-                  break;
-
+            // XPaths based on
+            // http://ipscience-help.thomsonreuters.com/LAMRService/WebServiceOperationsGroup/responseAPIWoS.html
+            $citations = $xpath->query("/fn/map/map[@name=\"cite_1\"]/map[@name=\"WOS\"]");
+            if ($citations->length > 0) {
+              $context = $citations->item(0);
+              $times_cited_node = $xpath->query("val[@name=\"timesCited\"]", $context);
+              if ($times_cited_node->length > 0) {
+                $times_cited = $times_cited_node->item(0)->textContent;
+              }
+              $citing_articles_url_node = $xpath->query("val[@name=\"citingArticlesURL\"]", $context);
+              if ($citing_articles_url_node->length > 0) {
+                $citing_articles_url = $citing_articles_url_node->item(0)->textContent;
               }
             }
+
             // If there is no error, return data.
             if (isset($times_cited) && $times_cited > 0) {
               $badge_type = variable_get('islandora_wos_badgetype');
