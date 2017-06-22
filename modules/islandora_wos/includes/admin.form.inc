@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Web of Science badge admin options
+ * Web of Science badge admin options.
  */
 
 /**

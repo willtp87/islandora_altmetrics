@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Utility functions
+ * Utility functions.
  */
 
 /**
@@ -46,5 +47,5 @@ function islandora_badges_get_doi(AbstractObject $object) {
  */
 function islandora_badges_show_for_cmodel(AbstractObject $object) {
   $show_cmodels = variable_get('islandora_badges_selected_cmodels', array('ir:citationCModel', 'ir:thesisCModel'));
-  return (array_intersect($object->models, $show_cmodels) == TRUE);
+  return (count(array_intersect($object->models, $show_cmodels)) > 0);
 }

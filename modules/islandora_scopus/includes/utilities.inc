@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Utility functions for Scopus
+ * Utility functions for Scopus.
  */
 
 /**
@@ -20,22 +21,24 @@ function islandora_scopus_get_id($type, $code) {
 
   switch (strtolower($type)) {
     case "doi":
-      $query = "DOI%28" . urlencode($code) . "%29";
+      $doi_string = format_string('DOI(!doi)', array('!doi' => $code));
+      $query = http_build_query(array('query' => $doi_string));
       break;
-
   }
 
-  $query_url = "http://api.elsevier.com/content/search/scopus?query={$query}";
-  $headers = array('Accept' => 'application/json', 'X-ELS-APIKey' => $api_key);
-  $response = drupal_http_request($query_url, array('headers' => $headers));
-  if ($response->code == 200) {
-    $json = json_decode($response->data);
-    if ($json->{'search-results'}->{'opensearch:totalResults'} > 0) {
-      $entry = reset($json->{'search-results'}->{'entry'});
-      if (isset($entry->{'dc:identifier'})) {
-        // Scopus ID is "SCOPUS:XXXXX".
-        $scopus_id = explode(':', $entry->{'dc:identifier'});
-        return $scopus_id[1];
+  if (isset($query)) {
+    $query_url = "http://api.elsevier.com/content/search/scopus?{$query}";
+    $headers = array('Accept' => 'application/json', 'X-ELS-APIKey' => $api_key);
+    $response = drupal_http_request($query_url, array('headers' => $headers, 'method' => 'GET'));
+    if ($response->code == 200) {
+      $json = json_decode($response->data);
+      if ($json->{'search-results'}->{'opensearch:totalResults'} > 0) {
+        $entry = reset($json->{'search-results'}->{'entry'});
+        if (isset($entry->{'dc:identifier'})) {
+          // Scopus ID is "SCOPUS:XXXXX".
+          $scopus_id = explode(':', $entry->{'dc:identifier'});
+          return $scopus_id[1];
+        }
       }
     }
   }
