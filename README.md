@@ -8,7 +8,7 @@ Islandora Badges displays various metrics (and other) badges on objects. Each ba
 * Web of Science: Citation counts via Web of Science
 * oaDOI: Provides a link to a fulltext document for objects without a PDF datastream, via the oadoi.org API
 
-Badges will only display on objects that have a DOI (digital object identifier). The xpath to the DOI field is configurable.
+Badges will only display on objects that have a MODS datastream and a DOI (digital object identifier). The xpath to the DOI field is configurable.
 
 ## Requirements
 
@@ -16,8 +16,6 @@ This module requires the following modules/libraries:
 
 * [Islandora](https://github.com/islandora/islandora)
 * [Islandora Scholar](https://github.com/Islandora/islandora_scholar)
-* [Tuque](https://github.com/islandora/tuque)
-* Probably a given for most repositories, but your objects must have a MODS datastream
 
 ## Installation
 
