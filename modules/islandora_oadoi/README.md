@@ -4,6 +4,8 @@
 
 Islandora oaDOI provides block containing a link to an open-access version of a citation-only object. It uses the API from oadoi.org. 
 
+The badge will only display on objects with a MODS datastream and a DOI (Digital Object Identifier).
+
 ## Requirements
 
 This module requires the following modules/libraries:
