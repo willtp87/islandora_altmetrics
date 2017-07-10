@@ -13,7 +13,6 @@ This module requires the following modules/libraries:
 * [Islandora](https://github.com/islandora/islandora)
 * [Islandora Scholar](https://github.com/Islandora/islandora_scholar)
 * [Islandora Badges](../../)
-* [Tuque](https://github.com/islandora/tuque)
 
 ## Installation
 
